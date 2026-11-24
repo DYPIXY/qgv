@@ -86,7 +86,7 @@ elseif(WIN32)
         string(REGEX MATCH [=[PACKAGE_VERSION[ \t]+"([^"]+)"]=]
             _GRAPHVIZ_VERSION_MATCH "${_GRAPHVIZ_VERSION_DEFINITION}")
         if(_GRAPHVIZ_VERSION_MATCH)
-            set(GRAPHVIZ_VERSION "${CMAKE_MATCH_1}")
+            string(REGEX REPLACE "^[vV]" "" GRAPHVIZ_VERSION "${CMAKE_MATCH_1}")
         endif()
     endif()
 
