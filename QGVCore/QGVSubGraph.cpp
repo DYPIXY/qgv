@@ -15,6 +15,12 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library.
 ***************************************************************/
+#if GRAPHVIZ_VERSION < 9
+    #define GRAPHVIZ_TRUE TRUE
+#else
+    #define GRAPHVIZ_TRUE true
+#endif
+
 #include "QGVSubGraph.h"
 #include <QGVCore.h>
 #include <QGVScene.h>
@@ -42,13 +48,13 @@ QString QGVSubGraph::name() const
 
 QGVNode *QGVSubGraph::addNode(const QString &label)
 {
-    Agnode_t *node = agnode(_sgraph->graph(), NULL, TRUE);
+    Agnode_t *node = agnode(_sgraph->graph(), NULL, GRAPHVIZ_TRUE);
     if(node == NULL)
     {
         qWarning()<<"Invalid sub node :"<<label;
         return 0;
     }
-    agsubnode(_sgraph->graph(), node, TRUE);
+    agsubnode(_sgraph->graph(), node, GRAPHVIZ_TRUE);
 
     QGVNode *item = new QGVNode(new QGVNodePrivate(node, _sgraph->graph()), _scene);
     item->setLabel(label);
@@ -62,9 +68,9 @@ QGVSubGraph *QGVSubGraph::addSubGraph(const QString &name, bool cluster)
 {
     Agraph_t* sgraph;
     if(cluster)
-        sgraph = agsubg(_sgraph->graph(), ("cluster_" + name).toLocal8Bit().data(), TRUE);
+        sgraph = agsubg(_sgraph->graph(), ("cluster_" + name).toLocal8Bit().data(), GRAPHVIZ_TRUE);
     else
-        sgraph = agsubg(_sgraph->graph(), name.toLocal8Bit().data(), TRUE);
+        sgraph = agsubg(_sgraph->graph(), name.toLocal8Bit().data(), GRAPHVIZ_TRUE);
 
     if(sgraph == NULL)
     {

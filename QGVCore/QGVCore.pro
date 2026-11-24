@@ -4,14 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core
-
-greaterThan(QT_MAJOR_VERSION, 4){
-    QT += widgets
-}
-lessThan(QT_MAJOR_VERSION, 5) {
-    QT += gui
-}
+QT       += core gui widgets
 
 TARGET = QGVCore
 TEMPLATE = lib
@@ -24,6 +17,8 @@ DLLDESTDIR = ../bin
 !include(GraphViz.pri) {
      error("fail open GraphViz.pri")
  }
+
+DEFINES += QGVCORE_LIB
 
 SOURCES += QGVScene.cpp \
     QGVNode.cpp \

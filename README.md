@@ -24,10 +24,12 @@ Screen capture :
 Installation :
 --------------
 
+* Requires Qt 6 and the Graphviz development libraries.
 * Download qgv sources from GIT : git clone https://github.com/nbergont/qgv.git
 * Download graphViz librairie : http://www.graphviz.org/Download.php
-* Configure GRAPHVIZ_PATH in QGraphViz.pro
-* Open with Qt Creator & compile
+* Configure GRAPHVIZ_PATH in QGVCore/GraphViz.pri when building on Windows.
+* Open QGraphViz.pro with a Qt 6-enabled Qt Creator, or build with CMake:
+  `cmake -S . -B build && cmake --build build`
 
 For macOS :
 * Download qgv sources from GIT : git clone https://github.com/nbergont/qgv.git
@@ -56,4 +58,3 @@ Other similar projects (you must look before lose time with GraphViz) :
 -----------------------
 * Constraint-based diagram editor : https://github.com/mjwybrow/dunnart  (Probably best one ! Awesome work ...)
 * OGDF - Open Graph Drawing Framework : http://www.ogdf.net/doku.php (Very good library, better than GraphViz !)
-

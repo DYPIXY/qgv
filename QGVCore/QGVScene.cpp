@@ -15,6 +15,13 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library.
 ***************************************************************/
+#if GRAPHVIZ_VERSION < 9
+    #define GRAPHVIZ_TRUE TRUE
+#else
+    #define GRAPHVIZ_TRUE true
+#endif
+
+
 #include "QGVScene.h"
 // The following include allows the automoc to detect, that it must moc this class
 #include "moc_QGVScene.cpp"
@@ -64,7 +71,7 @@ void QGVScene::setEdgeAttribute(const QString &name, const QString &value)
 
 QGVNode *QGVScene::addNode(const QString &label)
 {
-    Agnode_t *node = agnode(_graph->graph(), NULL, TRUE);
+    Agnode_t *node = agnode(_graph->graph(), NULL, GRAPHVIZ_TRUE);
     if(node == NULL)
     {
         qWarning()<<"Invalid node :"<<label;
@@ -79,7 +86,8 @@ QGVNode *QGVScene::addNode(const QString &label)
 
 QGVEdge *QGVScene::addEdge(QGVNode *source, QGVNode *target, const QString &label)
 {
-    Agedge_t* edge = agedge(_graph->graph(), source->_node->node(), target->_node->node(), NULL, TRUE);
+    Agedge_t* edge = agedge(_graph->graph(), source->_node->node(), target->_node->node(), NULL, GRAPHVIZ_TRUE);
+
     if(edge == NULL)
     {
         qWarning()<<"Invalid egde :"<<label;
@@ -97,9 +105,9 @@ QGVSubGraph *QGVScene::addSubGraph(const QString &name, bool cluster)
 {
     Agraph_t* sgraph;
     if(cluster)
-        sgraph = agsubg(_graph->graph(), ("cluster_" + name).toLocal8Bit().data(), TRUE);
+        sgraph = agsubg(_graph->graph(), ("cluster_" + name).toLocal8Bit().data(), GRAPHVIZ_TRUE);
     else
-        sgraph = agsubg(_graph->graph(), name.toLocal8Bit().data(), TRUE);
+        sgraph = agsubg(_graph->graph(), name.toLocal8Bit().data(), GRAPHVIZ_TRUE);
 
     if(sgraph == NULL)
     {
