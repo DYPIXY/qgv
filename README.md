@@ -30,6 +30,7 @@ Installation :
 * Configure GRAPHVIZ_PATH in QGVCore/GraphViz.pri when building on Windows.
 * Open QGraphViz.pro with a Qt 6-enabled Qt Creator, or build with CMake:
   `cmake -S . -B build && cmake --build build`
+* The sample executable is not built by default; enable it with `-DBUILD_SAMPLE=ON`.
 
 For macOS :
 * Download qgv sources from GIT : git clone https://github.com/nbergont/qgv.git
